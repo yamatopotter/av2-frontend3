@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './LoginForm.module.css';
-import { authUser } from '../../functions/authUser'
+import { authUser, isUserLoggedIn } from '../../functions/authUser'
 
 const LoginForm = () => {
 
   const [formData, setFormData] = useState({username: '', password: ''});
+  const isUserLogged = isUserLoggedIn();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
 
@@ -31,6 +34,10 @@ const LoginForm = () => {
         progress: undefined,
         theme: "light",
         });
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000)
     }
     else{
       toast.error('Usuário ou senha inválidos.', {
@@ -45,6 +52,12 @@ const LoginForm = () => {
         });
     }
   };
+
+  useEffect(() => {
+    if(isUserLogged){
+      navigate("/home");
+    }
+  }, [isUserLogged])
 
   return (
     <>
