@@ -1,12 +1,32 @@
-import { useEffect } from 'react';
-import ScheduleFormModal from '../ScheduleForm/modal/ScheduleFormModal';
-import styles from './DetailCard.module.css';
+import { useEffect, useState } from 'react';
 
-const DetailCard = () => {
+import styles from './DetailCard.module.css';
+import ScheduleFormModal from '../ScheduleForm/modal/ScheduleFormModal';
+
+import { api } from '../../services/api';
+import { Loading } from '../Loading/Loading';
+
+export function DetailCard() {
+  const [dentist, setDentist] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  //Nesse useEffect, você vai fazer um fetch na api passando o
+  //id do dentista que está vindo do react-router e carregar os dados em algum estado
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api passando o
-    //id do dentista que está vindo do react-router e carregar os dados em algum estado
+    getDentistDetails();
   }, []);
+
+  async function getDentistDetails() {
+    const response = await api.get(`/dentista?matricula=${dentist.matricula}`);
+
+    setDentist(response.data);
+    setLoading(false);
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     //As instruções que estão com {''} precisam ser
     //substituídas com as informações que vem da api
@@ -50,6 +70,4 @@ const DetailCard = () => {
       <ScheduleFormModal />
     </>
   );
-};
-
-export default DetailCard;
+}
