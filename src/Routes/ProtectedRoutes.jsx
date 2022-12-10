@@ -1,11 +1,8 @@
 import { Outlet, Navigate } from "react-router";
-
-const userAuth = () => {
-    return true;
-}
+import { isUserLoggedIn } from "../functions/authUser";
 
 const ProtectedRoutes = () => {
-    const isAuthorized = userAuth();
+    const isAuthorized = isUserLoggedIn();
     return isAuthorized ? <Outlet /> : <Navigate to="/unauthorized" />;
 }
 

@@ -1,26 +1,64 @@
+import { useState } from 'react';
+import { ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import styles from './LoginForm.module.css';
+import { authUser } from '../../functions/authUser'
 
 const LoginForm = () => {
-  const handleSubmit = (e) => {
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //enviar os dados do formulário e enviá-los no corpo da requisição
-    //para a rota da api que faz o login /auth
-    //lembre-se que essa rota vai retornar um Bearer Token e o mesmo deve ser salvo
-    //no localstorage para ser usado em chamadas futuras
-    //Com tudo ocorrendo corretamente, o usuário deve ser redirecionado a página principal,com react-router
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
+
+  const [formData, setFormData] = useState({username: '', password: ''});
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    const isAuthorized = await authUser(formData);
+    if(isAuthorized.logged){
+      const loginData = JSON.stringify({
+        token: isAuthorized.token,
+        tipo: isAuthorized.tipo
+      });
+
+      localStorage.setItem('loginData', loginData);
+
+      toast.success('Login efetuado com sucesso!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+    else{
+      toast.error('Usuário ou senha inválidos.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
   };
 
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
+      <ToastContainer />
       <div className={`text-center card container ${styles.card}`}>
         <div className={`card-body ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
             <input
               className={`form-control ${styles.inputSpacing}`}
               placeholder='Login'
+              value={formData.username}
+              onChange={(e) => {setFormData({...formData, username: e.target.value});}}
               name='login'
               required
             />
@@ -28,11 +66,13 @@ const LoginForm = () => {
               className={`form-control ${styles.inputSpacing}`}
               placeholder='Password'
               name='password'
+              value={formData.password}
+              onChange={(e) => {setFormData({...formData, password: e.target.value});}}
               type='password'
               required
             />
             <button className='btn btn-primary' type='submit'>
-              Send
+              Entrar no Sistema
             </button>
           </form>
         </div>
