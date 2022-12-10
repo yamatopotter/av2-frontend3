@@ -1,13 +1,14 @@
 import styles from "./Navbar.module.css";
+import ThemeButton from './ThemeButton';
 
-const Navbar = () => {
+const Navbar = ({color}) => {
 
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-light`}
+        className={`navbar navbar-expand-sm navbar-${color} bg-${color}`}
         aria-label="Third navbar example"
       >
         <div className="container">
@@ -62,18 +63,7 @@ const Navbar = () => {
                 </a>
               </li>
 
-              <li className={`nav-item`}>
-                {/* Ao ser clicado, esse botão mudará a aplicação para dark mode ou light mode.
-                 Lembre-se de usar um estado no contexto para fazer essa alteração.
-                 Na linha seguinte deverá ser feito um teste se a aplicação
-                 está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
-                <button
-                  className={`btn btn-light${styles.btnStyle
-                    }`}
-                >
-                  ☀ 🌙{" "}
-                </button>
-              </li>
+              <ThemeButton styles={styles.btnStyle} />
             </ul>
           </div>
         </div>
