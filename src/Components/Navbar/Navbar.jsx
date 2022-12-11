@@ -1,41 +1,40 @@
-import styles from "./Navbar.module.css";
-import ThemeButton from './ThemeButton';
+import styles from './Navbar.module.css';
+import { ThemeButton } from './ThemeButton';
 
-const Navbar = ({color}) => {
-
+export function Navbar({ color }) {
   return (
-    <header className="sticky-top">
+    <header className='sticky-top'>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
         className={`navbar navbar-expand-sm navbar-${color} bg-${color}`}
-        aria-label="Third navbar example"
+        aria-label='Third navbar example'
       >
-        <div className="container">
+        <div className='container'>
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-          <a className={`navbar-brand ${styles.navbarBrand}`} href="/home">
+          <a className={`navbar-brand ${styles.navbarBrand}`} href='/home'>
             DH Odonto
           </a>
           <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample03"
-            aria-controls="navbarsExample03"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            className='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarsExample03'
+            aria-controls='navbarsExample03'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className='navbar-toggler-icon'></span>
           </button>
 
           <div
-            className="collapse navbar-collapse justify-content-end"
-            id="navbarsExample03"
+            className='collapse navbar-collapse justify-content-end'
+            id='navbarsExample03'
           >
-            <ul className="navbar-nav mb-2 mb-sm-0">
+            <ul className='navbar-nav mb-2 mb-sm-0'>
               <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-                <a className="nav-link" href="/home">
+                <a className='nav-link' href='/home'>
                   Home
                 </a>
               </li>
@@ -46,7 +45,7 @@ const Navbar = ({color}) => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                <a className="nav-link" href="/login">
+                <a className='nav-link' href='/login'>
                   Login
                 </a>
               </li>
@@ -58,7 +57,7 @@ const Navbar = ({color}) => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                <a className="nav-link" href="/logout">
+                <a className='nav-link' href='/logout'>
                   Logout
                 </a>
               </li>
@@ -70,6 +69,4 @@ const Navbar = ({color}) => {
       </nav>
     </header>
   );
-};
-
-export default Navbar;
+}

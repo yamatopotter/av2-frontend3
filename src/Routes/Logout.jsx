@@ -1,9 +1,7 @@
-import { userLogout } from "../functions/authUser";
-import { Navigate } from "react-router-dom";
+import { userLogout } from '../functions/authUser';
+import { Navigate } from 'react-router-dom';
 
-const Logout = () =>{
-    userLogout();
-    return <Navigate to="/" />;
+export function Logout() {
+  userLogout();
+  return <Navigate to='/' />;
 }
-
-export default Logout;
