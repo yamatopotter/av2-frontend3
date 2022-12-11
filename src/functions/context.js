@@ -1,5 +1,10 @@
 import { createContext } from 'react';
 
-const ThemeColor = createContext('light');
+if(!localStorage.getItem('color')){
+    let color = 'light';
+    localStorage.setItem('color', color);
+}
 
-export default ThemeColor;
+const color = localStorage.getItem('color');
+
+export const ThemeColor = createContext(color);
