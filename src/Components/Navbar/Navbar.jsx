@@ -1,5 +1,5 @@
 import styles from './Navbar.module.css';
-import ThemeButton from './ThemeButton';
+import { ThemeButton } from './ThemeButton/ThemeButton';
 
 export function Navbar({ color }) {
   return (
