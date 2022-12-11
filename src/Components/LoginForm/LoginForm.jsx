@@ -54,7 +54,7 @@ export function LoginForm() {
     if (isUserLogged) {
       navigate('/home');
     }
-  }, [isUserLogged]);
+  }, [isUserLogged, navigate]);
 
   return (
     <>
