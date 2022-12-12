@@ -1,6 +1,6 @@
-import ScheduleForm from '../ScheduleForm';
+import { ScheduleForm } from '../ScheduleForm';
 
-const ScheduleFormModal = () => {
+export function ScheduleFormModal() {
   return (
     <div
       className={`modal fade`}
@@ -33,6 +33,4 @@ const ScheduleFormModal = () => {
       </div>
     </div>
   );
-};
-
-export default ScheduleFormModal;
+}

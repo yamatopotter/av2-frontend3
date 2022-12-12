@@ -1,21 +1,48 @@
-import { useEffect } from 'react';
-import Card from '../Components/Card/Card';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Card } from '../Components/Card/Card';
+import { Loading } from '../Components/Loading/Loading';
 
-const Home = () => {
+import { api } from '../services/api';
+
+export function Home() {
+  const [dentists, setDentists] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  //Nesse useEffect, deverá ser obtido todos os dentistas da API
+  //Armazena-los em um estado para posteriormente fazer um map
+  //Usando o componente <Card />
   useEffect(() => {
-    //Nesse useEffect, deverá ser obtido todos os dentistas da API
-    //Armazena-los em um estado para posteriormente fazer um map
-    //Usando o componente <Card />
+    getAllDentists();
   }, []);
+
+  async function getAllDentists() {
+    const response = await api.get('/dentista');
+    setDentists(response.data);
+
+    setLoading(false);
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <h1>Home</h1>
       <div className='card-grid container'>
-        <Card />
+        {dentists.map((dentist) => (
+          <Link key={dentist.matricula} to={`/detail/${dentist.matricula}`}>
+            <div className='dentist'>
+              <Card
+                matricula={dentist.matricula}
+                nome={dentist.nome}
+                sobrenome={dentist.sobrenome}
+              />
+            </div>
+          </Link>
+        ))}
       </div>
     </>
   );
-};
-
-export default Home;
+}
