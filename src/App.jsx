@@ -10,6 +10,9 @@ export function App() {
   /*Na linha seguinte deverá ser feito um teste se a aplicação
         está em dark mode e deverá utilizar a classe dark ou light */
 
+function App() {
+  const [color, setColor] = useState(localStorage.getItem('color'));
+  
   return (
     <ThemeColor.Provider value={[color, setColor]}>
       <div className={`app ${color}`}>
