@@ -9,6 +9,7 @@ import Home from './Routes/Home';
 import Login from './Routes/Login';
 import Logout from './Routes/Logout';
 import NotFound from './Components/Error404/NotFound';
+import { Pacientes } from './Routes/Pacientes';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
             
             <Route element={<ProtectedRoutes />}>
               <Route path="home" element={<Home />} />
+              <Route path="pacientes" element={<Pacientes />} />
               <Route path="logout" element={<Logout />} />
             </Route>
             

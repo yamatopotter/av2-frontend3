@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { response } from 'msw';
 import { isUserLoggedIn } from './authUser';
 const baseUrl = "https://dhodonto.ctdprojetos.com.br";
 
@@ -62,8 +61,8 @@ export const deleteDentist = async (matricula) =>{
 
 export const getAllPacients = async () =>{
     try{
-        const response = await axios.get(baseUrl + '/pacientes');
-        return response.data;
+        const response = await axios.get(baseUrl + '/paciente');
+        return response.data.body;
     }
     catch{
         return false;

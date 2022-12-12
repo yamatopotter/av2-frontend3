@@ -56,15 +56,15 @@ const Navbar = ({color}) => {
                     <li><Link className="dropdown-item" to="#">Editar dentista</Link></li>
                     <li><Link className="dropdown-item" to="#">Excluir dentista</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><Link className="dropdown-item" to="#">Ver pacientes</Link></li>
+                    <li><Link className="dropdown-item" to="pacientes">Ver pacientes</Link></li>
                     <li><Link className="dropdown-item" to="#">Adicionar paciente</Link></li>
                     <li><Link className="dropdown-item" to="#">Editar paciente</Link></li>
                     <li><Link className="dropdown-item" to="#">Excluir paciente</Link></li>
                   </ul>
               </li>
 
-              <li className={`nav-item ${styles.navBarLink}`}>
-                <Link cclassName="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</Link>+
+              <li className={`nav-item ${styles.navBarLink} dropdown`}>
+                <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</Link>
                   <ul className="dropdown-menu">
                     <li><Link className="dropdown-item" to="#">Ver Consutlas</Link></li>
                     <li><Link className="dropdown-item" to="#">Agendar Consuta</Link></li>
