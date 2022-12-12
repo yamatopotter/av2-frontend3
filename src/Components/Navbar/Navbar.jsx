@@ -49,19 +49,29 @@ const Navbar = ({color}) => {
               </li>
 
               <li className={`nav-item ${styles.navBarLink} dropdown`}>
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administração</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Ver dentistas</a></li>
-                    <li><a class="dropdown-item" href="#">Adicionar dentista</a></li>
-                    <li><a class="dropdown-item" href="#">Editar dentista</a></li>
-                    <li><a class="dropdown-item" href="#">Excluir dentista</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#">Ver pacientes</a></li>
-                    <li><a class="dropdown-item" href="#">Adicionar paciente</a></li>
-                    <li><a class="dropdown-item" href="#">Editar paciente</a></li>
-                    <li><a class="dropdown-item" href="#">Excluir paciente</a></li>
+                <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administração</Link>
+                  <ul className="dropdown-menu">
+                    <li><Link className="dropdown-item" to="#">Ver dentistas</Link></li>
+                    <li><Link className="dropdown-item" to="#">Adicionar dentista</Link></li>
+                    <li><Link className="dropdown-item" to="#">Editar dentista</Link></li>
+                    <li><Link className="dropdown-item" to="#">Excluir dentista</Link></li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li><Link className="dropdown-item" to="#">Ver pacientes</Link></li>
+                    <li><Link className="dropdown-item" to="#">Adicionar paciente</Link></li>
+                    <li><Link className="dropdown-item" to="#">Editar paciente</Link></li>
+                    <li><Link className="dropdown-item" to="#">Excluir paciente</Link></li>
                   </ul>
               </li>
+
+              <li className={`nav-item ${styles.navBarLink}`}>
+                <Link cclassName="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</Link>+
+                  <ul className="dropdown-menu">
+                    <li><Link className="dropdown-item" to="#">Ver Consutlas</Link></li>
+                    <li><Link className="dropdown-item" to="#">Agendar Consuta</Link></li>
+                    <li><Link className="dropdown-item" to="#">Excluir Consulta</Link></li>
+                  </ul>
+              </li>
+
               <li className={`nav-item ${styles.navBarLink}`}>                
                 <LinkLoggedButton color={color}/>
               </li>

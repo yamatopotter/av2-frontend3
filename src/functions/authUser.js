@@ -1,10 +1,10 @@
 import axios from 'axios';
-
 const baseUrl = "https://dhodonto.ctdprojetos.com.br";
 
 export const authUser = async (loginData) => {
     try{
         const data = await axios.post(`${baseUrl}/auth`, { ...loginData });
+        console.log(data.data)
         return ({...data.data, logged: true});
     }
     catch{
