@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getAllPacients } from "../../functions/api";
+import { getAllDentists } from "../../functions/api";
 
-export const TablePacientes = () =>{ 
+export const TableDentistas = () =>{ 
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
         async function getData(){
-            const data = await getAllPacients();
+            const data = await getAllDentists();
             setTableData(data);
             return data;
         }
@@ -17,10 +17,10 @@ export const TablePacientes = () =>{
 
     const tableHeader =[
         {title: 'Nome'},
+        {title: 'Sobrenome'},
         {title: 'Matricula'},
         {title: 'Usuário'},
-        {title: 'Data de Cadastro'},
-        {title: 'Ações'}
+        {title: 'Ação'},
     ];
 
     return (
@@ -36,11 +36,10 @@ export const TablePacientes = () =>{
                 {
                     tableData.map((data, index)=>{
                         return (<tr key={index}>
-                            <td>{data.nome} {data.sobrenome}</td>
+                            <td>{data.nome}</td>
+                            <td>{data.sobrenome}</td>
                             <td>{data.matricula}</td>
                             <td>{data.usuario.username}</td>
-                            <td>{data.dataDeCadastro}</td>
-                            <td></td>
                         </tr>)}
                     )
                 }

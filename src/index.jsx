@@ -10,6 +10,8 @@ import Login from './Routes/Login';
 import Logout from './Routes/Logout';
 import NotFound from './Components/Error404/NotFound';
 import { Pacientes } from './Routes/Pacientes';
+import { Dentistas } from './Routes/Dentistas';
+import { Consultas } from './Routes/Consultas';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,7 +25,9 @@ root.render(
             
             <Route element={<ProtectedRoutes />}>
               <Route path="home" element={<Home />} />
+              <Route path="dentistas" element={<Dentistas />} />
               <Route path="pacientes" element={<Pacientes />} />
+              <Route path="consultas" element={<Consultas />} />
               <Route path="logout" element={<Logout />} />
             </Route>
             
