@@ -1,11 +1,5 @@
-import DetailCard from '../Components/DetailCard/DetailCard';
+import { DetailCard } from '../Components/DetailCard/DetailCard';
 
-const Detail = () => {
-  return (
-    <>
-      <DetailCard />
-    </>
-  );
-};
-
-export default Detail;
+export function Detail() {
+  return <DetailCard />;
+}

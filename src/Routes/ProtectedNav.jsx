@@ -1,10 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const userAuth = () => {
-    return true;
+export function userAuth() {
+  return true;
 }
 
-const ProtectedRoutes = () => {
-    isAuthorized = userAuth();
-    return isAuthorized ? <Outlet /> : <Navigate to="/unauthorized" />;
+export function ProtectedRoutes() {
+  const isAuthorized = userAuth();
+  return isAuthorized ? <Outlet /> : <Navigate to='/unauthorized' />;
 }

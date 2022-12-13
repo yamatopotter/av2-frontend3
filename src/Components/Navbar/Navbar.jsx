@@ -22,28 +22,28 @@ const Navbar = ({color}) => {
     <header className="sticky-top">
       <nav
         className={`navbar navbar-expand-sm navbar-${color} bg-${color}`}
-        aria-label="Third navbar example"
+        aria-label='Third navbar example'
       >
-        <div className="container">
+        <div className='container'>
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
           <Link className={`navbar-brand ${styles.navbarBrand}`} to="home">DH Odonto</Link>
           <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample03"
-            aria-controls="navbarsExample03"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            className='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarsExample03'
+            aria-controls='navbarsExample03'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className='navbar-toggler-icon'></span>
           </button>
 
           <div
-            className="collapse navbar-collapse justify-content-end"
-            id="navbarsExample03"
+            className='collapse navbar-collapse justify-content-end'
+            id='navbarsExample03'
           >
-            <ul className="navbar-nav mb-2 mb-sm-0">
+            <ul className='navbar-nav mb-2 mb-sm-0'>
               <li className={`nav-item ${styles.navBarLink}`}>
                 <Link className="nav-link" to="home">Home</Link>
               </li>
@@ -82,6 +82,4 @@ const Navbar = ({color}) => {
       </nav>
     </header>
   );
-};
-
-export default Navbar;
+}
