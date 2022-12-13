@@ -29,6 +29,7 @@ root.render(
             <Route path="dentistas" element={<Dentistas />} />
             <Route path='detail/:idDentist' element={<DetailCard />} />
             <Route path="pacientes" element={<Pacientes />} />
+            <Route path="paciente/editar/:matricula" element={<Pacientes />} />
             <Route path="consultas" element={<Consultas />} />
             <Route path="logout" element={<Logout />} />
           </Route>

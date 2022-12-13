@@ -26,7 +26,7 @@ export function App() {
       <ThemeColor.Provider value={[color, setColor]}>
         <div className={`app ${color}`}>
           <Navbar color={color}/>
-          <main class="container p-4">
+          <main className={`container p-4`}>
             <Outlet />
           </main>
           <Footer />
