@@ -19,24 +19,24 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //Lembre-se de configurar suas rotas e seu contexto aqui
 root.render(
   <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} >
-            <Route path="login" element={<Login />} />
-            
-            <Route element={<ProtectedRoutes />}>
-              <Route path="home" element={<Home />} />
-              <Route path="dentistas" element={<Dentistas />} />
-              <Route path='detail/:idDentist' element={<DetailCard />} />
-              <Route path="pacientes" element={<Pacientes />} />
-              <Route path="consultas" element={<Consultas />} />
-              <Route path="logout" element={<Logout />} />
-            </Route>
-            
-            <Route path='*' element={<NotFound />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} >
+          <Route path="login" element={<Login />} />
+          
+          <Route element={<ProtectedRoutes />}>
+            <Route path="home" element={<Home />} />
+            <Route path="dentistas" element={<Dentistas />} />
+            <Route path='detail/:idDentist' element={<DetailCard />} />
+            <Route path="pacientes" element={<Pacientes />} />
+            <Route path="consultas" element={<Consultas />} />
+            <Route path="logout" element={<Logout />} />
           </Route>
+          
           <Route path='*' element={<NotFound />} />
         </Route>
+        
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

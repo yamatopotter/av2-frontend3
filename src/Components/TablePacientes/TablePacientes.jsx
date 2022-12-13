@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAllPacients } from "../../functions/api";
 
 export const TablePacientes = () =>{ 
@@ -40,7 +41,10 @@ export const TablePacientes = () =>{
                             <td>{data.matricula}</td>
                             <td>{data.usuario.username}</td>
                             <td>{data.dataDeCadastro}</td>
-                            <td></td>
+                            <td>
+                                <Link to={`paciente/editar/${data.matricula}`}>📝</Link>
+                                <Link to={`paciente/excluir/${data.matricula}`}>🗑</Link>
+                            </td>
                         </tr>)}
                     )
                 }
