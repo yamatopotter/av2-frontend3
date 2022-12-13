@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getAllDentists } from "../../functions/api";
 
 export const TableDentistas = () =>{ 
@@ -40,6 +41,10 @@ export const TableDentistas = () =>{
                             <td>{data.sobrenome}</td>
                             <td>{data.matricula}</td>
                             <td>{data.usuario.username}</td>
+                            <td>
+                                <Link to={`dentista/editar/${data.matricula}`}>📝</Link>
+                                <Link to={`dentista/excluir/${data.matricula}`}>🗑</Link>
+                            </td>
                         </tr>)}
                     )
                 }
