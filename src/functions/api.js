@@ -4,7 +4,7 @@ const baseUrl = "https://dhodonto.ctdprojetos.com.br";
 
 function generateAuthToken(){
     const loginData = isUserLoggedIn();
-    const token = loginData.tipo+' '+loginData.token;
+    const token = `${loginData.tipo} ${loginData.token}`;
 
     return token;
 }
@@ -101,8 +101,13 @@ export const updatePacient = async (paciente) =>{
 
 export const deletePacient = async (matricula) =>{
     try{
-        const response = await axios.delete(baseUrl + `/paciente?matricula=${matricula}`);
-        return response.data;
+        const token = generateAuthToken();
+        const header = JSON.stringify({headers:{Authorization: token}});
+
+        console.log(header)
+
+        await axios.delete(`${baseUrl}/paciente?matricula=${matricula}`, header);
+        return true;
     }
     catch{
         return false;
