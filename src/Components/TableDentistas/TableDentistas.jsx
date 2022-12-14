@@ -1,54 +1,57 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getAllDentists } from "../../functions/api";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { getAllDentists } from '../../functions/api';
 
-export const TableDentistas = () =>{ 
-    const [tableData, setTableData] = useState([]);
+export const TableDentistas = () => {
+  const [tableData, setTableData] = useState([]);
 
-    useEffect(() => {
-        async function getData(){
-            const data = await getAllDentists();
-            setTableData(data);
-            return data;
-        }
-        
-        getData();
-    }, [])
-    
+  useEffect(() => {
+    async function getData() {
+      const data = await getAllDentists();
+      setTableData(data);
+      return data;
+    }
 
-    const tableHeader =[
-        {title: 'Nome'},
-        {title: 'Sobrenome'},
-        {title: 'Matricula'},
-        {title: 'Usuário'},
-        {title: 'Ação'},
-    ];
+    getData();
+  }, []);
 
-    return (
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    {tableHeader.map((data, index)=>{
-                        return <th scope="col" key={index}>{data.title}</th>
-                    })}
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    tableData.map((data, index)=>{
-                        return (<tr key={index}>
-                            <td>{data.nome}</td>
-                            <td>{data.sobrenome}</td>
-                            <td>{data.matricula}</td>
-                            <td>{data.usuario.username}</td>
-                            <td>
-                                <Link to={`dentista/editar/${data.matricula}`}>📝</Link>
-                                <Link to={`dentista/excluir/${data.matricula}`}>🗑</Link>
-                            </td>
-                        </tr>)}
-                    )
-                }
-            </tbody>
-        </table>
-    );
-}
+  const tableHeader = [
+    { title: 'Nome' },
+    { title: 'Sobrenome' },
+    { title: 'Matricula' },
+    { title: 'Usuário' },
+    { title: 'Ação' },
+  ];
+
+  return (
+    <table className='table table-striped'>
+      <thead>
+        <tr>
+          {tableHeader.map((data, index) => {
+            return (
+              <th scope='col' key={index}>
+                {data.title}
+              </th>
+            );
+          })}
+        </tr>
+      </thead>
+      <tbody>
+        {tableData.map((data, index) => {
+          return (
+            <tr key={index}>
+              <td>{data.nome}</td>
+              <td>{data.sobrenome}</td>
+              <td>{data.matricula}</td>
+              <td>{data.usuario.username}</td>
+              <td>
+                <Link to={`dentista/editar/${data.matricula}`}>📝</Link>
+                <Link to={`dentista/excluir/${data.matricula}`}>🗑</Link>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+};
