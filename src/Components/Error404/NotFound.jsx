@@ -6,7 +6,11 @@ export function NotFound() {
       <h1>Ops! a rota não foi encontrada</h1>
 
       <div className={styles.imgHolder}>
-        <img src={"./images/dente_quebrado.png"} className={styles.brokenTooth} alt="imagem de dente quebrado"/>
+        <img
+          src={'./images/dente_quebrado.png'}
+          className={styles.brokenTooth}
+          alt='imagem de dente quebrado'
+        />
       </div>
     </div>
   );

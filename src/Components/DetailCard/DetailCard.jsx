@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-import { ScheduleFormModal } from '../ScheduleForm/modal/ScheduleFormModal';
-import styles from './DetailCard.module.css';
 import { api } from '../../services/api';
 import { Loading } from '../Loading/Loading';
+import { ThemeContext } from '../../Providers/ThemeProvider';
+import { ScheduleFormModal } from '../ScheduleForm/modal/ScheduleFormModal';
+
+import styles from './DetailCard.module.css';
 
 export function DetailCard() {
   const { idDentist } = useParams();
@@ -12,8 +15,8 @@ export function DetailCard() {
   const [dentist, setDentist] = useState({});
   const [loading, setLoading] = useState(true);
 
-  //Nesse useEffect, você vai fazer um fetch na api passando o
-  //id do dentista que está vindo do react-router e carregar os dados em algum estado
+  const { theme } = useContext(ThemeContext);
+
   useEffect(() => {
     getDentistDetails();
   }, []);
@@ -33,11 +36,12 @@ export function DetailCard() {
     //As instruções que estão com {''} precisam ser
     //substituídas com as informações que vem da api
     <>
+      <ToastContainer />
       <h1>Detalhes sobre o Dentista {dentist.nome} </h1>
       <section className='card col-sm-12 col-lg-6 container'>
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-        <div className={`card-body row`}>
+        <div className={`card-body row ${theme ? styles.cardDark : ''}`}>
           <div className='col-sm-12 col-lg-6'>
             <img
               className='card-img-top'

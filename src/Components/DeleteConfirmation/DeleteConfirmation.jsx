@@ -1,11 +1,11 @@
-import { deletePacient } from "../../functions/api";
-import styles from "./DeleteConfirmation.module.css";
+import { deletePatient } from '../../functions/api';
+import styles from './DeleteConfirmation.module.css';
 
-export function DeleteConfirmation({nomePaciente, matricula, toast}) {
-  async function excluirPaciente(matricula){
-    const retorno = await deletePacient(matricula);
-    if(retorno){
-        toast.success('Paciente excluido com sucesso', {
+export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
+  async function excluirPaciente(matricula) {
+    const retorno = await deletePatient(matricula);
+    if (retorno) {
+      toast.success('Paciente excluído com sucesso', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -14,9 +14,8 @@ export function DeleteConfirmation({nomePaciente, matricula, toast}) {
         draggable: true,
         progress: undefined,
         theme: 'light',
-      })
-    }
-    else{
+      });
+    } else {
       toast.error('Houve um erro ao excluir. Tente mais tarde.', {
         position: 'top-right',
         autoClose: 3000,
@@ -26,7 +25,7 @@ export function DeleteConfirmation({nomePaciente, matricula, toast}) {
         draggable: true,
         progress: undefined,
         theme: 'light',
-      })
+      });
     }
   }
 
@@ -56,20 +55,26 @@ export function DeleteConfirmation({nomePaciente, matricula, toast}) {
             ></button>
           </div>
           <div className={`modal-body ${styles.buttonsApart}`}>
-          <button
+            <button
               type='button'
               className={`btn btn-secondary`}
               data-bs-dismiss='modal'
               aria-label='Cancelar'
-            >Cancelar</button>
+            >
+              Cancelar
+            </button>
 
-          <button
+            <button
               type='button'
               className={`btn btn-danger`}
               data-bs-dismiss='modal'
-              onClick = {()=>{excluirPaciente(matricula)}}
+              onClick={() => {
+                excluirPaciente(matricula);
+              }}
               aria-label='Excluir'
-            >Excluir</button>
+            >
+              Excluir
+            </button>
           </div>
         </div>
       </div>
