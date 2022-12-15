@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Footer } from './Components/Footer/Footer';
 import { Navbar } from './Components/Navbar/Navbar';
-import { ThemeColor } from './functions/context';
+import { ThemeContext } from './Providers/ThemeProvider';
 import { isUserLoggedIn } from './functions/authUser';
 
 export function App() {
@@ -23,7 +23,7 @@ export function App() {
   }, [isUserLogged, location, navigate])
 
   return (
-      <ThemeColor.Provider value={[color, setColor]}>
+      <ThemeContext.Provider value={[color, setColor]}>
         <div className={`app ${color}`}>
           <Navbar color={color}/>
           <main className={`container p-4`}>
@@ -31,6 +31,6 @@ export function App() {
           </main>
           <Footer />
         </div>
-      </ThemeColor.Provider>
+      </ThemeContext.Provider>
   );
 }

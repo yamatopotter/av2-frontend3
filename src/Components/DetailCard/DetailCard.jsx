@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import { api } from '../../services/api';
+import { api } from '../../Services/api';
 import { Loading } from '../Loading/Loading';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { ScheduleFormModal } from '../ScheduleForm/modal/ScheduleFormModal';

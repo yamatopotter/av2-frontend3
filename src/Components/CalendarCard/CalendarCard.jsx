@@ -10,7 +10,7 @@ export const CalendarCard = ({data}) => {
             <div className={ `card ${styles.cardAppointment}` } >
                 <div>
                     <span className={styles.month}>{monthNames[date.getMonth()]} - {date.getFullYear()}</span>
-                    <a className={styles.deleteButton} href={`/consulta/${data.dentista.matricula}/${data.dataHoraAgendamento}`}>🗑</a>
+                    <Link className={styles.deleteButton} href={`/consulta/${data.dentista.matricula}/${data.dataHoraAgendamento}`}>🗑</Link>
                     <span className={styles.day}>{date.getDay()}</span>
                 </div>
                 <div>

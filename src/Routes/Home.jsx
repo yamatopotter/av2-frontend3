@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card } from '../Components/Card/Card';
 import { Loading } from '../Components/Loading/Loading';
 
-import { api } from '../services/api';
+import { api } from '../Services/api';
 
 export function Home() {
   const [dentists, setDentists] = useState({});
