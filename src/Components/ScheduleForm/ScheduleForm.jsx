@@ -51,17 +51,35 @@ export function ScheduleForm() {
 
   const scheduleAppointment = async () => {
     try {
-      await addAppointment();
-      toast.success(`Agendamento realizado com sucesso!`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      const response = await addAppointment(body);
+      if(response){
+        toast.success(`Agendamento realizado com sucesso!`, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+      else{
+        toast.error(
+          'Houve um erro ao agendar sua consulta! Tente novamente mais tarde.',
+          {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          }
+        );
+      }
+      
     } catch (e) {
       toast.error(
         'Houve um erro ao agendar sua consulta! Tente novamente mais tarde.',

@@ -20,7 +20,7 @@ export function Card(props) {
         <div className={`card-body ${styles.CardBody}`}>
           {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
           que vem da API */}
-          <Link to={`/dentist/${props.matricula}`}>
+          <Link to={`/detail/${props.matricula}`}>
             <h5 className={`card-title ${styles.title}`}>
               {props.nome} {props.sobrenome}
             </h5>
