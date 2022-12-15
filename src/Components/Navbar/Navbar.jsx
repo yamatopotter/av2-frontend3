@@ -1,6 +1,7 @@
 import styles from './Navbar.module.css';
 import ThemeButton from './ThemeButton/ThemeButton';
 import { Link } from 'react-router-dom';
+import { LoggedMenu } from './LoggedMenu/LoggedMenu'
 
 const LinkLoggedButton = ({ color }) => {
   if (localStorage.getItem('loginData')) {
@@ -55,72 +56,8 @@ export const Navbar = ({ color }) => {
             id='navbarsExample03'
           >
             <ul className='navbar-nav mb-2 mb-sm-0'>
-              <li className={`nav-item ${styles.navBarLink}`}>
-                <Link className='nav-link' to='home'>
-                  Home
-                </Link>
-              </li>
-
-              <li className={`nav-item ${styles.navBarLink} dropdown`}>
-                <Link
-                  className='nav-link dropdown-toggle'
-                  to='#'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                >
-                  Administração
-                </Link>
-                <ul className='dropdown-menu'>
-                  <li>
-                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='dentistas'>
-                      Administrar dentistas
-                    </Link>
-                  </li>
-                  {/* <li>
-                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='#'>
-                      Adicionar dentista
-                    </Link>
-                  </li> */}
-                  <li>
-                    <hr className='dropdown-divider' />
-                  </li>
-                  <li>
-                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='pacientes'>
-                      Administrar pacientes
-                    </Link>
-                  </li>
-                  {/* <li>
-                    <Link className='dropdown-item' to='#'>
-                      Adicionar paciente
-                    </Link>
-                  </li> */}
-                </ul>
-              </li>
-
-              <li className={`nav-item ${styles.navBarLink} dropdown`}>
-                <Link
-                  className='nav-link dropdown-toggle'
-                  to='#'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                >
-                  Consultas
-                </Link>
-                <ul className='dropdown-menu'>
-                  <li>
-                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='consultas'>
-                      Administrar Consultas
-                    </Link>
-                  </li>
-                  {/* <li>
-                    <Link className='dropdown-item' to='#'>
-                      Agendar Consulta
-                    </Link>
-                  </li> */}
-                </ul>
-              </li>
+              
+              <LoggedMenu />
 
               <li className={`nav-item ${styles.navBarLink}`}>
                 <LinkLoggedButton color={color} />

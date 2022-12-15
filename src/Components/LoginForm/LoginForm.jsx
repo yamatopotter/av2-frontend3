@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { ThemeContext } from '../../Providers/ThemeProvider'
 import styles from './LoginForm.module.css';
 import { authUser, isUserLoggedIn } from '../../functions/authUser';
 
 export function LoginForm() {
   const [formData, setFormData] = useState({ username: '', password: '' });
+  const { color } =  useContext(ThemeContext)
   const isUserLogged = isUserLoggedIn();
   const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ export function LoginForm() {
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <ToastContainer />
-      <div className={`text-center card container ${styles.card}`}>
+      <div className={`text-center card container ${(color === 'light' ) ? '' : styles.cardDark} ${styles.card}`}>
         <div className={`card-body ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
             <input
