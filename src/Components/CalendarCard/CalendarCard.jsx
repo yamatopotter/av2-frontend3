@@ -14,10 +14,11 @@ export const CalendarCard = ({data}) => {
                 <div>
                     <span className={styles.month}>{monthNames[date.getMonth()]} - {date.getFullYear()}</span>
                     <Link className={styles.deleteButton} href={`/consulta/${data.dentista.matricula}/${data.dataHoraAgendamento}`}>🗑</Link>
-                    <span className={styles.day}>{date.getDay()}</span>
+                    <span className={styles.day}>{date.getDate()}</span>
                 </div>
-                <div>
-                    
+                <div className='text-center fw-bold py-2' style={(color === 'dark') ? {borderTop: '1px solid #efefef', borderBottom: '1px solid #efefef'} : {borderTop: '1px solid #0a0a0a', borderBottom: '1px solid #0a0a0a'}}>
+                    {(date.getUTCHours()<10) ? `0${date.getUTCHours()}` : date.getUTCHours()}:
+                    {(date.getUTCMinutes()<10)?`0${date.getUTCMinutes()}` : date.getUTCMinutes()}
                 </div>
                 <div className={styles.nomeHolder}>
                     <p className={styles.nomePaciente}>
