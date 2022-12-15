@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getAllPatients } from '../../functions/api';
 import { DeleteConfirmation } from '../DeleteConfirmation/DeleteConfirmation';
 import { ToastContainer, toast } from 'react-toastify';
