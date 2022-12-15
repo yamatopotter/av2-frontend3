@@ -1,7 +1,11 @@
 import { deletePatient } from '../../functions/api';
 import styles from './DeleteConfirmation.module.css';
+import { useContext } from 'react';
+import { ThemeContext } from '../../Providers/ThemeProvider';
 
 export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
+  const { color } = useContext(ThemeContext);
+
   async function excluirPaciente(matricula) {
     const retorno = await deletePatient(matricula);
     if (retorno) {
@@ -37,10 +41,10 @@ export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
       aria-labelledby='exampleModalLabel'
       aria-hidden='true'
     >
-      <div className='modal-dialog'>
+      <div className='modal-dialog '>
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
-        <div className={`modal-content`}>
+        <div className={(color === 'dark') ? `modal-content ${styles.DarkModal}`: `modal-content`}>
           <div className='modal-header'>
             <h1 className='modal-title fs-5' id='exampleModalLabel'>
               Deseja realmente excluir o paciente {nomePaciente}
@@ -49,7 +53,7 @@ export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
             // está em dark mode e deverá utilizado o css correto */}
             <button
               type='button'
-              className={`btn-close`}
+              className={(color === 'dark') ? `btn-close ${styles.closeButtonDark}` : `btn-close`}
               data-bs-dismiss='modal'
               aria-label='Close'
             ></button>

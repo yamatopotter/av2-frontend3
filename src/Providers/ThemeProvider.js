@@ -7,4 +7,4 @@ if(!localStorage.getItem('color')){
 
 const color = localStorage.getItem('color');
 
-export const ThemeColor = createContext(color);
+export const ThemeContext = createContext(color);
