@@ -1,14 +1,22 @@
 import { useContext } from 'react';
 
-import { deletePatient } from '../../functions/api';
+import { deletePatient, deleteDentist } from '../../functions/api';
 import styles from './DeleteConfirmation.module.css';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 
-export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
+export function DeleteConfirmation({ nomePaciente, matricula, toast, tipoUsuario }) {
   const { color } = useContext(ThemeContext);
 
-  async function excluirPaciente(matricula) {
-    const retorno = await deletePatient(matricula);
+  async function excluirUsuario(matricula) {
+    let retorno = '';
+
+    if(tipoUsuario === 'dentista') { 
+      retorno = await deleteDentist(matricula);
+    }
+    else{
+      retorno = await deletePatient(matricula);
+    }
+    
     if (retorno) {
       toast.success('Paciente excluído com sucesso', {
         position: 'top-right',
@@ -80,7 +88,7 @@ export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
               className={`btn btn-danger`}
               data-bs-dismiss='modal'
               onClick={() => {
-                excluirPaciente(matricula);
+                excluirUsuario(matricula, tipoUsuario);
               }}
               aria-label='Excluir'
             >

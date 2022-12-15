@@ -19,7 +19,7 @@ test("Teste de renderização do agendamento", ()=>{
     render(<CalendarCard data={data}/>);
 
     const mes = screen.getByText("Dez - 2022");
-    const dia = screen.getByText("6");
+    const dia = screen.getByText("10");
     const nomePaciente  = screen.getByText("Paciente Teste");
     const nomeDentista  = screen.getByText("Dentista Teste");
 

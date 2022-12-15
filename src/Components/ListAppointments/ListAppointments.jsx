@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllAppointments } from "../../functions/api";
+import { ToastContainer, toast } from "react-toastify";
 import { CalendarCard } from "../CalendarCard/CalendarCard";
 
 export const ListAppointments = () => {
@@ -30,10 +31,13 @@ export const ListAppointments = () => {
     }, []);
     
     return (
+      <>
+        <ToastContainer />
         <div className={`row`}>
             {
-                tableData.map((data, index)=><CalendarCard key={index} data={data} />)
+                tableData.map((data, index)=><CalendarCard key={index} data={data} toast={toast} />)
             }
         </div>
+      </>
     );
 }

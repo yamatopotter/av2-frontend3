@@ -111,7 +111,7 @@ export const updatePatient = async (paciente) => {
 export const deletePatient = async (matricula) => {
   try {
     const token = generateAuthToken();
-    const header = JSON.stringify({ headers: { Authorization: token } });
+    const header = { 'Authorization': `${token}` };
 
     console.log(header);
 

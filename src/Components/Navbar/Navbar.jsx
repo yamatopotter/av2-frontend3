@@ -73,28 +73,28 @@ export const Navbar = ({ color }) => {
                 </Link>
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className='dropdown-item' to='dentistas'>
+                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='dentistas'>
                       Administrar dentistas
                     </Link>
                   </li>
-                  <li>
-                    <Link className='dropdown-item' to='#'>
+                  {/* <li>
+                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='#'>
                       Adicionar dentista
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <hr className='dropdown-divider' />
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='pacientes'>
+                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='pacientes'>
                       Administrar pacientes
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link className='dropdown-item' to='#'>
                       Adicionar paciente
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
 
@@ -110,15 +110,15 @@ export const Navbar = ({ color }) => {
                 </Link>
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className='dropdown-item' to='consultas'>
+                    <Link className={`dropdown-item ${styles.linkCorrection}`} to='consultas'>
                       Administrar Consultas
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link className='dropdown-item' to='#'>
                       Agendar Consulta
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
 
