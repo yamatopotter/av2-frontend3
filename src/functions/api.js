@@ -144,11 +144,16 @@ export const getAppointment = async (matricula) => {
 
 export const addAppointment = async (compromisso) => {
   try {
-    const response = await axios.post(
-      baseUrl + '/consulta',
-      JSON.stringify(compromisso)
-    );
-    return response.data;
+    const token = generateAuthToken();
+    const headerAndBody = JSON.stringify({
+      headers: {
+        Authorization: token,
+      },
+      body: compromisso,
+    });
+
+    const response = await axios.post(baseUrl + '/consulta', headerAndBody);
+    return true;
   } catch {
     return false;
   }
