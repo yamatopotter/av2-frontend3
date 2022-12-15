@@ -9,7 +9,10 @@ export const ListAppointments = () => {
     async function getData() {
       const data = await getAllAppointments();
       setTableData(data);
-    }}, []);
+    }
+    
+    getData();
+    }, []);
     
     return (
         <div className={`row`}>

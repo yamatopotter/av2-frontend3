@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { getAllPatients } from '../../functions/api';
 import { DeleteConfirmation } from '../DeleteConfirmation/DeleteConfirmation';
 import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from 'react';
+import { ThemeContext } from '../../Providers/ThemeProvider';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const TablePacientes = () => {
+  const { color } = useContext(ThemeContext);
   const [tableData, setTableData] = useState([]);
   const [modalData, setModalData] = useState({
     nomePaciente: '',
@@ -33,7 +36,7 @@ export const TablePacientes = () => {
   return (
     <>
       <ToastContainer />
-      <table className='table table-striped'>
+      <table className={(color === 'dark') ? 'table table-striped table-dark' : 'table table-striped'} >
         <thead>
           <tr>
             {tableHeader.map((data, index) => {
@@ -56,19 +59,22 @@ export const TablePacientes = () => {
                 <td>{data.usuario.username}</td>
                 <td>{data.dataDeCadastro}</td>
                 <td>
-                  <Link to={`paciente/editar/${data.matricula}`}>📝</Link>
-                  <button
-                    onClick={() =>
-                      setModalData({
-                        nomePaciente: `${data.nome}`,
-                        matricula: `${data.matricula}`,
-                      })
-                    }
-                    data-bs-toggle='modal'
-                    data-bs-target='#exampleModal'
-                  >
-                    🗑
-                  </button>
+                  <div className='d-flex justify-content-around'>
+                    <Link to={`paciente/editar/${data.matricula}`} className='btn btn-outline-warning m-0'>📝</Link>
+                    <button
+                      className='btn btn-outline-danger'
+                      onClick={() =>
+                        setModalData({
+                          nomePaciente: `${data.nome}`,
+                          matricula: `${data.matricula}`,
+                        })
+                      }
+                      data-bs-toggle='modal'
+                      data-bs-target='#exampleModal'
+                    >
+                      🗑
+                    </button>
+                  </div>
                 </td>
               </tr>
             );
