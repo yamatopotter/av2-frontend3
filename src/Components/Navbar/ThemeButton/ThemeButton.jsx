@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../../Providers/ThemeProvider';
 
 export default function ThemeButton({ styles }) {
-  const [color, setColor] = useContext(ThemeContext);
+  const {color, setColor} = useContext(ThemeContext);
 
   function changeThemeColor() {
     if (color === 'light') {

@@ -23,7 +23,7 @@ export function App() {
   }, [isUserLogged, location, navigate])
 
   return (
-      <ThemeContext.Provider value={[color, setColor]}>
+      <ThemeContext.Provider value={{color, setColor}}>
         <div className={`app ${color}`}>
           <Navbar color={color}/>
           <main className={`container p-4`}>
