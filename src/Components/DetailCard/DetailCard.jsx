@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import { api } from '../../Services/api';
+import { getDentistData } from '../../functions/api';
 import { Loading } from '../Loading/Loading';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 import { ScheduleFormModal } from '../ScheduleForm/modal/ScheduleFormModal';
@@ -10,14 +10,24 @@ import { ScheduleFormModal } from '../ScheduleForm/modal/ScheduleFormModal';
 import styles from './DetailCard.module.css';
 
 export function DetailCard() {
+  const { color } = useContext(ThemeContext);
+
   const { idDentist } = useParams();
 
   const [dentist, setDentist] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const { theme } = useContext(ThemeContext);
-
   useEffect(() => {
+    async function getData() {
+      const data = await getDentistData();
+
+      setDentist(data);
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
+  /* useEffect(() => {
     getDentistDetails();
   }, []);
 
@@ -27,21 +37,23 @@ export function DetailCard() {
     setDentist(response.data);
     setLoading(false);
   }
-
+ */
   if (loading) {
     return <Loading />;
   }
 
   return (
-    //As instruções que estão com {''} precisam ser
-    //substituídas com as informações que vem da api
     <>
       <ToastContainer />
       <h1>Detalhes sobre o Dentista {dentist.nome} </h1>
       <section className='card col-sm-12 col-lg-6 container'>
-        {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-        <div className={`card-body row ${theme ? styles.cardDark : ''}`}>
+        <div
+          className={
+            color === 'dark'
+              ? `card-body row ${styles.cardDark}`
+              : `card-body row`
+          }
+        >
           <div className='col-sm-12 col-lg-6'>
             <img
               className='card-img-top'
@@ -61,12 +73,14 @@ export function DetailCard() {
             </ul>
 
             <div className='text-center'>
-              {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-              // está em dark mode e deverá utilizado o css correto */}
               <button
                 data-bs-toggle='modal'
                 data-bs-target='#exampleModal'
-                className={`btn btn-light ${styles.button}`}
+                className={
+                  color === 'dark'
+                    ? `btn btn-dark ${styles.button}`
+                    : `btn btn-light ${styles.button}`
+                }
               >
                 Marcar consulta
               </button>

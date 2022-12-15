@@ -31,7 +31,13 @@ export const TableDentistas = () => {
   ];
 
   return (
-    <table className={(color === 'dark') ? 'table table-striped table-dark' : 'table table-striped'} >
+    <table
+      className={
+        color === 'dark'
+          ? 'table table-striped table-dark'
+          : 'table table-striped'
+      }
+    >
       <thead>
         <tr>
           {tableHeader.map((data, index) => {
@@ -53,7 +59,12 @@ export const TableDentistas = () => {
               <td>{data.usuario.username}</td>
               <td>
                 <div className='d-flex justify-content-around'>
-                  <Link to={`paciente/editar/${data.matricula}`} className='btn btn-outline-warning m-0'>📝</Link>
+                  <Link
+                    to={`paciente/editar/${data.matricula}`}
+                    className='btn btn-outline-warning m-0'
+                  >
+                    📝
+                  </Link>
                   <button
                     className='btn btn-outline-danger'
                     onClick={() =>

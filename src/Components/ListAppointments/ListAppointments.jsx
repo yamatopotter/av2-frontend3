@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { getAllAppointments } from "../../functions/api";
-import { CalendarCard } from "../CalendarCard/CalendarCard";
+import { useEffect, useState } from 'react';
+import { getAllAppointments } from '../../functions/api';
+import { CalendarCard } from '../CalendarCard/CalendarCard';
 
 export const ListAppointments = () => {
   const [tableData, setTableData] = useState([]);
@@ -10,15 +10,15 @@ export const ListAppointments = () => {
       const data = await getAllAppointments();
       setTableData(data);
     }
-    
+
     getData();
-    }, []);
-    
-    return (
-        <div className={`row`}>
-            {
-                tableData.map((data, index)=><CalendarCard key={index} data={data} />)
-            }
-        </div>
-    );
-}
+  }, []);
+
+  return (
+    <div className={`row`}>
+      {tableData.map((data, index) => (
+        <CalendarCard key={index} data={data} />
+      ))}
+    </div>
+  );
+};
