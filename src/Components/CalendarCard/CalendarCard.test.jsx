@@ -15,16 +15,26 @@ const data = {
     }
 }
 
-test("Teste de renderização do agendamento", ()=>{
-    render(<CalendarCard data={data}/>);
+describe("Montagem dos componentes com e sem parametro", ()=>{
+    test("Teste de renderização do agendamento", ()=>{
+        render(<CalendarCard data={data}/>);
+    
+        const mes = screen.getByText("Dez - 2022");
+        const dia = screen.getByText("10");
+        const nomePaciente  = screen.getByText("Paciente Teste");
+        const nomeDentista  = screen.getByText("Dentista Teste");
+    
+        expect(mes).toBeInTheDocument();
+        expect(dia).toBeInTheDocument();
+        expect(nomePaciente).toBeInTheDocument();
+        expect(nomeDentista).toBeInTheDocument();
+    });
 
-    const mes = screen.getByText("Dez - 2022");
-    const dia = screen.getByText("10");
-    const nomePaciente  = screen.getByText("Paciente Teste");
-    const nomeDentista  = screen.getByText("Dentista Teste");
-
-    expect(mes).toBeInTheDocument();
-    expect(dia).toBeInTheDocument();
-    expect(nomePaciente).toBeInTheDocument();
-    expect(nomeDentista).toBeInTheDocument();
-});
+    test("Teste de renderização do sem parametro", ()=>{
+        render(<CalendarCard/>);
+    
+        const mensagemErro  = screen.getByText("Ops! Parece que houve um erro na exibição das informações.");
+    
+        expect(mensagemErro).toBeInTheDocument();
+    });
+})
