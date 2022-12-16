@@ -20,8 +20,6 @@ export function ScheduleForm() {
     appointmentData: '',
   });
 
-  // const [appointmentData, setAppointmentData] = useState('');
-
   useEffect(() => {
     async function getData() {
       const dataDentists = await getAllDentists();
@@ -99,8 +97,6 @@ export function ScheduleForm() {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div className={`text-center container}`}>
         <form onSubmit={handleSubmit}>
           <div className={`row ${styles.rowSpacing}`}>
@@ -162,8 +158,6 @@ export function ScheduleForm() {
             </div>
           </div>
           <div className={`row ${styles.rowSpacing}`}>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
             <button
               className={`btn btn-light ${styles.button}`}
               type='submit'

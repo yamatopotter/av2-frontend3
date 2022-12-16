@@ -3,6 +3,7 @@ import { getAllAppointments } from "../../functions/api";
 import { ToastContainer, toast } from "react-toastify";
 import { CalendarCard } from "../CalendarCard/CalendarCard";
 
+
 export const ListAppointments = () => {
   const [tableData, setTableData] = useState([]);
 
@@ -26,7 +27,7 @@ export const ListAppointments = () => {
       data.sort(organizeByDate)
       setTableData(data);
     }
-    
+
     getData();
     }, []);
     

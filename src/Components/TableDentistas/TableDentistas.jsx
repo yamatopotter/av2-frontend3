@@ -47,7 +47,13 @@ export const TableDentistas = () => {
   return (
     <>
       <ToastContainer />
-      <table className={(color === 'dark') ? 'table table-striped table-dark' : 'table table-striped'} >
+      <table 
+      className={
+        color === 'dark'
+          ? 'table table-striped table-dark'
+          : 'table table-striped'
+      } >
+
       <thead>
         <tr>
           {tableHeader.map((data, index) => {
@@ -59,6 +65,7 @@ export const TableDentistas = () => {
           })}
         </tr>
       </thead>
+
       <tbody>
         {tableData.map((data, index) => {
           return (
@@ -69,7 +76,9 @@ export const TableDentistas = () => {
               <td>{data.usuario.username}</td>
               <td>
                 <div className='d-flex justify-content-around'>
+
                   <button onClick={showToast} className='btn btn-outline-warning m-0'>📝</button>
+
                   <button
                     className='btn btn-outline-danger'
                     onClick={() =>

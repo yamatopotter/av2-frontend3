@@ -35,7 +35,6 @@ export const Navbar = ({ color }) => {
         aria-label='Third navbar example'
       >
         <div className='container'>
-          {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
           <Link className={`navbar-brand ${styles.navbarBrand}`} to='home'>
             DH Odonto
           </Link>

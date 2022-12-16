@@ -113,8 +113,6 @@ export const deletePatient = async (matricula) => {
     const token = generateAuthToken();
     const header = { 'Authorization': `${token}` };
 
-    console.log(header);
-
     await axios.delete(`${baseUrl}/paciente?matricula=${matricula}`, header);
     return true;
   } catch {

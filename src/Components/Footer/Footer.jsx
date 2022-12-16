@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+
+import { ThemeContext } from '../../Providers/ThemeProvider';
+
 import styles from './Footer.module.css';
 
 export function Footer() {
+  const { color } = useContext(ThemeContext);
+
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -13,21 +19,31 @@ export function Footer() {
         >
           Voltar para o topo
         </button>
-        {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar a class navbar-dark bg-dark ou navbar-light bg-light  */}
-        <div className={`navbar-light bg-light} ${styles.footer}`}>
+        <div
+          className={
+            color === 'dark'
+              ? `navbar-dark bg-dark ${styles.footer}`
+              : `navbar-light bg-light ${styles.footer}`
+          }
+        >
           <div className='container'>
             <div className={`row`}>
               <div className='col-sm-12 col-lg-6'>
-                {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-                // está em dark mode e deverá utilizar o css correto */}
                 <img
                   className={`${styles.dhLogo}`}
-                  src='/images/DH.png'
+                  src={
+                    color === 'dark' ? '/images/DH-dark.png' : '/images/DH.png'
+                  }
                   alt='DH-logo'
                 />
               </div>
-              <div className={`col-sm-12 col-lg-6 ${styles.icons}`}>
+              <div
+                className={
+                  color === `dark`
+                    ? `col-sm-12 col-lg-6 ${styles.iconsDark}`
+                    : `col-sm-12 col-lg-6 ${styles.icons}`
+                }
+              >
                 <img
                   src='/images/ico-facebook.png'
                   alt='ícone do facebook'
