@@ -4,7 +4,10 @@ import { ThemeContext } from '../../Providers/ThemeProvider';
 
 export const CalendarCard = ({data, toast}) => {
     const {color} = useContext(ThemeContext);
-    const date = new Date(data.dataHoraAgendamento);
+    let date = ''
+    
+    if(data) date = new Date(data.dataHoraAgendamento);
+    
     const monthNames = [
       'Jan',
       'Fev',
@@ -31,6 +34,12 @@ export const CalendarCard = ({data, toast}) => {
             progress: undefined,
             theme: "light",
             })
+    }
+
+    if(!data){
+        return(
+            <h1>Ops! Parece que houve um erro na exibição das informações.</h1>
+        )
     }
 
     return(
