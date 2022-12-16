@@ -20,8 +20,6 @@ export function ScheduleForm() {
     appointmentData: '',
   });
 
-  // const [appointmentData, setAppointmentData] = useState('');
-
   useEffect(() => {
     async function getData() {
       const dataDentists = await getAllDentists();
@@ -51,17 +49,35 @@ export function ScheduleForm() {
 
   const scheduleAppointment = async () => {
     try {
-      await addAppointment();
-      toast.success(`Agendamento realizado com sucesso!`, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      const response = await addAppointment(body);
+      if(response){
+        toast.success(`Agendamento realizado com sucesso!`, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      }
+      else{
+        toast.error(
+          'Houve um erro ao agendar sua consulta! Tente novamente mais tarde.',
+          {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          }
+        );
+      }
+      
     } catch (e) {
       toast.error(
         'Houve um erro ao agendar sua consulta! Tente novamente mais tarde.',
@@ -81,8 +97,6 @@ export function ScheduleForm() {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div className={`text-center container}`}>
         <form onSubmit={handleSubmit}>
           <div className={`row ${styles.rowSpacing}`}>
@@ -144,8 +158,6 @@ export function ScheduleForm() {
             </div>
           </div>
           <div className={`row ${styles.rowSpacing}`}>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
             <button
               className={`btn btn-light ${styles.button}`}
               type='submit'

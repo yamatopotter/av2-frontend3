@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getAllDentists } from '../../functions/api';
 import { useContext } from 'react';
 import { ThemeContext } from '../../Providers/ThemeProvider';
+import { DeleteConfirmation } from '../DeleteConfirmation/DeleteConfirmation';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const TableDentistas = () => {
   const { color } = useContext(ThemeContext);
@@ -30,8 +31,29 @@ export const TableDentistas = () => {
     { title: 'Ação' },
   ];
 
+  function showToast(){
+    toast.warning("A função ainda não está implementada", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
+}
+
   return (
-    <table className={(color === 'dark') ? 'table table-striped table-dark' : 'table table-striped'} >
+    <>
+      <ToastContainer />
+      <table 
+      className={
+        color === 'dark'
+          ? 'table table-striped table-dark'
+          : 'table table-striped'
+      } >
+
       <thead>
         <tr>
           {tableHeader.map((data, index) => {
@@ -43,6 +65,7 @@ export const TableDentistas = () => {
           })}
         </tr>
       </thead>
+
       <tbody>
         {tableData.map((data, index) => {
           return (
@@ -53,7 +76,9 @@ export const TableDentistas = () => {
               <td>{data.usuario.username}</td>
               <td>
                 <div className='d-flex justify-content-around'>
-                  <Link to={`paciente/editar/${data.matricula}`} className='btn btn-outline-warning m-0'>📝</Link>
+
+                  <button onClick={showToast} className='btn btn-outline-warning m-0'>📝</button>
+
                   <button
                     className='btn btn-outline-danger'
                     onClick={() =>
@@ -74,5 +99,13 @@ export const TableDentistas = () => {
         })}
       </tbody>
     </table>
+
+    <DeleteConfirmation
+        nomePaciente={modalData.nomePaciente}
+        matricula={modalData.matricula}
+        toast={toast}
+        tipoUsuario = 'dentista'
+      />
+    </>
   );
 };

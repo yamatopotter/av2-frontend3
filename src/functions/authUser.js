@@ -1,27 +1,16 @@
 import axios from 'axios';
 
-const baseUrl = "https://dhodonto.ctdprojetos.com.br";
+const baseUrl = 'https://dhodonto.ctdprojetos.com.br';
 
 export const authUser = async (loginData) => {
-    try{
-        const data = await axios.post(`${baseUrl}/auth`, { ...loginData });
-        console.log(data.data)
-        return ({...data.data, logged: true});
-    }
-    catch{
-        return({logged: false});
-    }
-}
-
-//import { api } from '../services/api';
-
-/*export const authUser = async (loginData) => {
   try {
-    const data = await axios.post(`${api}/auth`, { ...loginData });
+    const data = await axios.post(`${baseUrl}/auth`, { ...loginData });
+
     return { ...data.data, logged: true };
   } catch {
     return { logged: false };
-  }*/
+  }
+};
 
 export const isUserLoggedIn = () => {
   if (localStorage.getItem('loginData')) {

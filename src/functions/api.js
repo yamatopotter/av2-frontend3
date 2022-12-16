@@ -111,9 +111,7 @@ export const updatePatient = async (paciente) => {
 export const deletePatient = async (matricula) => {
   try {
     const token = generateAuthToken();
-    const header = JSON.stringify({ headers: { Authorization: token } });
-
-    console.log(header);
+    const header = { 'Authorization': `${token}` };
 
     await axios.delete(`${baseUrl}/paciente?matricula=${matricula}`, header);
     return true;
@@ -142,17 +140,16 @@ export const getAppointment = async (matricula) => {
   }
 };
 
-export const addAppointment = async (compromisso) => {
+export const addAppointment = async (body) => {
   try {
     const token = generateAuthToken();
-    const headerAndBody = JSON.stringify({
-      headers: {
-        Authorization: token,
-      },
-      body: compromisso,
-    });
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+    }
 
-    const response = await axios.post(baseUrl + '/consulta', headerAndBody);
+    await axios.post(baseUrl + '/consulta', body, {headers: headers} );
+
     return true;
   } catch {
     return false;

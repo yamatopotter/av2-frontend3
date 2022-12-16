@@ -1,13 +1,22 @@
-import { deletePatient } from '../../functions/api';
-import styles from './DeleteConfirmation.module.css';
 import { useContext } from 'react';
+
+import { deletePatient, deleteDentist } from '../../functions/api';
+import styles from './DeleteConfirmation.module.css';
 import { ThemeContext } from '../../Providers/ThemeProvider';
 
-export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
+export function DeleteConfirmation({ nomePaciente, matricula, toast, tipoUsuario }) {
   const { color } = useContext(ThemeContext);
 
-  async function excluirPaciente(matricula) {
-    const retorno = await deletePatient(matricula);
+  async function excluirUsuario(matricula) {
+    let retorno = '';
+
+    if(tipoUsuario === 'dentista') { 
+      retorno = await deleteDentist(matricula);
+    }
+    else{
+      retorno = await deletePatient(matricula);
+    }
+    
     if (retorno) {
       toast.success('Paciente excluído com sucesso', {
         position: 'top-right',
@@ -42,18 +51,24 @@ export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
       aria-hidden='true'
     >
       <div className='modal-dialog '>
-        {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-        <div className={(color === 'dark') ? `modal-content ${styles.DarkModal}`: `modal-content`}>
+        <div
+          className={
+            color === 'dark'
+              ? `modal-content ${styles.DarkModal}`
+              : `modal-content`
+          }
+        >
           <div className='modal-header'>
             <h1 className='modal-title fs-5' id='exampleModalLabel'>
               Deseja realmente excluir o paciente {nomePaciente}
             </h1>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-            // está em dark mode e deverá utilizado o css correto */}
             <button
               type='button'
-              className={(color === 'dark') ? `btn-close ${styles.closeButtonDark}` : `btn-close`}
+              className={
+                color === 'dark'
+                  ? `btn-close ${styles.closeButtonDark}`
+                  : `btn-close`
+              }
               data-bs-dismiss='modal'
               aria-label='Close'
             ></button>
@@ -73,7 +88,7 @@ export function DeleteConfirmation({ nomePaciente, matricula, toast }) {
               className={`btn btn-danger`}
               data-bs-dismiss='modal'
               onClick={() => {
-                excluirPaciente(matricula);
+                excluirUsuario(matricula, tipoUsuario);
               }}
               aria-label='Excluir'
             >

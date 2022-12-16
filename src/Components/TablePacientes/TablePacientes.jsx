@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState, useContext } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getAllPatients } from '../../functions/api';
 import { DeleteConfirmation } from '../DeleteConfirmation/DeleteConfirmation';
-import { ToastContainer, toast } from 'react-toastify';
-import { useContext } from 'react';
 import { ThemeContext } from '../../Providers/ThemeProvider';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const TablePacientes = () => {
   const { color } = useContext(ThemeContext);
@@ -33,10 +31,29 @@ export const TablePacientes = () => {
     { title: 'Ações' },
   ];
 
+  function showToast(){
+    toast.warning("A função ainda não está implementada", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
+}
+
   return (
     <>
       <ToastContainer />
-      <table className={(color === 'dark') ? 'table table-striped table-dark' : 'table table-striped'} >
+      <table
+        className={
+          color === 'dark'
+            ? 'table table-striped table-dark'
+            : 'table table-striped'
+        }
+      >
         <thead>
           <tr>
             {tableHeader.map((data, index) => {
@@ -60,7 +77,8 @@ export const TablePacientes = () => {
                 <td>{data.dataDeCadastro}</td>
                 <td>
                   <div className='d-flex justify-content-around'>
-                    <Link to={`paciente/editar/${data.matricula}`} className='btn btn-outline-warning m-0'>📝</Link>
+                    <button onClick={showToast} className='btn btn-outline-warning m-0'>📝</button>
+
                     <button
                       className='btn btn-outline-danger'
                       onClick={() =>
@@ -86,6 +104,7 @@ export const TablePacientes = () => {
         nomePaciente={modalData.nomePaciente}
         matricula={modalData.matricula}
         toast={toast}
+        tipoUsuario = 'paciente'
       />
     </>
   );
